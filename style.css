@@ -90,9 +90,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 400px;
+    max-width: 350px;
     height: 50px;
-    width: 98vw;
 }
 
 h1 {
@@ -165,7 +164,9 @@ h1 {
 #keyboard {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 3x;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .row {
