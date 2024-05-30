@@ -38,7 +38,6 @@ $(document).ready(() => {
 
     loadGameState(); // Load the game state when the page is loaded
 
-    console.log("Target name for today:", targetInfo.name); // Debug statement
     createGrid(); // Call createGrid after targetInfo is set
     loadKeyboard(); // Load keyboard from external file
     loadNames(targetInfo.name.length);
