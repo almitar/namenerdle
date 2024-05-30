@@ -45,7 +45,7 @@ $(document).ready(() => {
 
     // Update the message above the grid
     const genderText = targetInfo.gender === "female" ? "female" : "male";
-    $('#gender-message').html(`Find the hidden common name, today's is<br>traditionally <span class="gender">${genderText}</span>`);
+    $('#gender-message').html(`Find the hidden common name, today's is traditionally <span class="gender">${genderText}</span>`);
 
     $(document).on('keydown', handleKeyDown);
 });
@@ -215,7 +215,7 @@ function closePopup() {
 
 // Share score
 function shareScore() {
-    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n`;
+    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n namenerdle.com`;
 
     results.forEach(attempt => {
         attempt.forEach(({ letter, state }) => {
@@ -289,7 +289,7 @@ function createGrid() {
     grid.empty(); // Clear any existing cells
 
     // Set the grid template columns based on the target name length
-    grid.css('grid-template-columns', `repeat(${targetInfo.name.length}, 50px)`);
+    grid.css('grid-template-columns', `repeat(${targetInfo.name.length}, 45px)`);
 
     for (let i = 0; i < maxAttempts; i++) {
         for (let j = 0; j < targetInfo.name.length; j++) { // Use the length of the target name
