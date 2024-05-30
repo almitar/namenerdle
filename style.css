@@ -90,7 +90,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 60px;
     gap: 20px;
 }
 
@@ -120,13 +120,18 @@ h1 {
     height: 30px;
 }
 
+#header-button-invisible {
+    width: 30px;
+    height: 30px;
+}
+
 #game-container {
     text-align: center;
 }
 
 #grid {
     display: grid;
-    grid-template-columns: repeat(5, 45px); /* Default to 5 columns, will be dynamically updated */
+    grid-template-columns: repeat(5, 53px); /* Default to 5 columns, will be dynamically updated */
     grid-gap: 5px;
     margin-bottom: 15px;
     margin-top: 15px;
@@ -134,13 +139,13 @@ h1 {
 }
 
 .cell {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1.5px solid #ccc;
-    font-size: 16px;
+    font-size: 24px;
     font-weight:bold;
     background-color:white;
     text-transform: uppercase;
@@ -179,11 +184,11 @@ h1 {
     border: none;
     cursor: pointer;
     flex: 1;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     border: 0;
-    padding: 10px 8px;
-    height: 45px;
+    padding: 14px;
+    height: 50px;
     border-radius: 4px;
     text-transform: uppercase;
 }
@@ -405,7 +410,7 @@ li {
 }
 
 #gender-message {
-    max-width: 350px;
+    max-width: 500px;
 }
 
 

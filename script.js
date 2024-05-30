@@ -288,7 +288,7 @@ function createGrid() {
     grid.empty(); // Clear any existing cells
 
     // Set the grid template columns based on the target name length
-    grid.css('grid-template-columns', `repeat(${targetInfo.name.length}, 45px)`);
+    grid.css('grid-template-columns', `repeat(${targetInfo.name.length}, 53px)`);
 
     for (let i = 0; i < maxAttempts; i++) {
         for (let j = 0; j < targetInfo.name.length; j++) { // Use the length of the target name
