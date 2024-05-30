@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Wordle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 36 36%22><text y=%2232%22 font-size=%2232%22>🤓</text></svg>">
+    <script src="meta_tags.js" defer></script>
+</head>
+<body>
+    <header>
+        <div id="header">
+            <button id="how-to-play-button" class="header-button">
+                <img src="icon-how-to.svg" alt="How to Play">
+            </button>
+            <h1>Name Nerdle</h1>
+            <div id="header-buttons">
+                <button id="stats-button" class="header-button">
+                    <img src="icon-stats.svg" alt="Stats">
+                </button>
+                <button id="settings-button" class="header-button">
+                    <img src="icon-settings.svg" alt="Settings">
+                </button>
+            </div>
+        </div>
+    </header>
+    <div id="already-played" style="display:none;">
+        <p id="countdown-timer"></p>
+        <button id="share-button" class="button">Share</button>
+    </div>
+    <div id="game-container">
+        <p id="gender-message" style="margin: 0; line-height: 25px;"></p>
+        <div id="message-container">
+            <div id="error-message"></div>
+        </div>
+        <div id="grid"></div>
+        <div id="keyboard-placeholder"></div>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <p id="popup-message"></p>
+            <div id="stats-container">
+                <h2>Stats</h2>
+                <div id="stats">
+                    <div class="stat"><span id="games-played">0</span><p>Played</p></div>
+                    <div class="stat"><span id="win-percentage">0</span><p>Win %</p></div>
+                    <div class="stat"><span id="current-streak">0</span><p>Current Streak</p></div>
+                    <div class="stat"><span id="max-streak">0</span><p>Max Streak</p></div>
+                </div>
+                <!--                 <div id="guess-distribution">
+                    <h3>Guess Distribution</h3>
+                    <div class="distribution-row"><span>1</span><div class="bar" id="guess-1"></div></div>
+                    <div class="distribution-row"><span>2</span><div class="bar" id="guess-2"></div></div>
+                    <div class="distribution-row"><span>3</span><div class="bar" id="guess-3"></div></div>
+                    <div class="distribution-row"><span>4</span><div class="bar" id="guess-4"></div></div>
+                    <div class="distribution-row"><span>5</span><div class="bar" id="guess-5"></div></div>
+                    <div class="distribution-row"><span>6</span><div class="bar" id="guess-6"></div></div>
+                </div> -->
+            </div>
+            <button id="share-button" class="button">Share</button>
+        </div>
+    </div>
+    <div id="how-to-play-popup" class="popup">
+        <div id="how-to-play-popup-content" class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>How To Play</h2>
+            <p>Guess the name in 6 tries.</p>
+            <ul>
+                <li>Each guess must be a 5-letter name listed in the SSA database.</li>
+                <li>The color of the tiles will change to show how close your guess was to the name.</li>
+                <li>The spelling of the name will be the most widely used in the US.</li>
+            </ul>
+            <div>
+                <p><strong>Examples</strong></p>
+                <p><span class="example-correct">L</span>ORNA - L is in the word and in the correct spot.</p>
+                <p>P<span class="example-present">A</span>ULA - A is in the word but in the wrong spot.</p>
+                <p>CAR<span class="example-incorrect">O</span>L - O is not in the word in any spot.</p>
+            </div>
+            <div class="feedback-button">
+                <a href="mailto:feedback@example.com" class="feedback-link" >Have feedback?</a>
+            </div>
+        </div>
+    </div>
+    <div id="settings-popup" class="popup">
+        <div id="settings-popup-content" class="popup-content">
+            <span class="close-button">&times;</span>
+            <h2>Settings</h2>
+            <div>
+                <label for="dark-theme-toggle">Dark Theme</label>
+                <label class="switch">
+                    <input type="checkbox" id="dark-theme-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <a href="mailto:feedback@example.com" class="feedback-link">Have feedback?</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="target_names.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

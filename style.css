@@ -1,0 +1,468 @@
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .header-button img,
+body.dark-mode .close-button {
+    filter: invert(1);
+}
+
+body.dark-mode .popup-content {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .cell {
+    background-color: #1e1e1e;
+    border: 2px solid #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .cell.correct {
+    background-color: #6aaa64;
+}
+
+body.dark-mode .cell.present {
+    background-color: #c9b458;
+}
+
+body.dark-mode .cell.absent {
+    background-color: #787c7e;
+}
+
+body.dark-mode .key {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .key.correct {
+    background-color: #6aaa64;
+    color: #e0e0e0;
+}
+
+body.dark-mode .key.present {
+    background-color: #c9b458;
+    color: #e0e0e0;
+}
+
+body.dark-mode .key.absent {
+    background-color: #787c7e;
+    color: #e0e0e0;
+}
+
+body.dark-mode #popup,
+body.dark-mode #how-to-play-popup,
+body.dark-mode #settings-popup {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .button {
+    background-color: #6aaa64;
+}
+
+body.dark-mode .button:hover {
+    background-color: #5c9a54;
+}
+
+body.dark-mode .feedback-link {
+    color: #e0e0e0;
+}
+
+body.dark-mode .gender {
+    background-color: #3c376a; 
+}
+
+
+body {
+    font-family: monospace, Helvetica Neue, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: #ffff;
+    margin: 0;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    padding: 10px;
+    height: 50px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+#header-buttons {
+    display: flex;
+    padding-right: 10px;
+    width: 60px;
+    justify-content: end;
+}
+
+#how-to-play-button {
+    padding-left: 10px;
+    width:60px;
+    text-align: left;
+}
+
+.header-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.header-button img {
+    width: 30px;
+    height: 30px;
+}
+
+#game-container {
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px); /* Default to 5 columns, will be dynamically updated */
+    grid-gap: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.cell {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    font-size: 1.9em;
+    font-weight: 900;
+    background-color: white;
+    text-transform: uppercase;
+}
+
+.correct {
+    background-color: #6aaa64;
+    color: white;
+}
+
+.present {
+    background-color: #c9b458;
+    color: white;
+}
+
+.absent {
+    background-color: #787c7e;
+    color: white;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.key {
+    padding: 0px;
+    background-color: #d3d6da;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: 0;
+    padding: 12px 10px;
+    margin: 0 6px 0 0;
+    height: 50px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.key.large-key {
+    flex: 1.5;
+}
+
+.key.correct {
+    background-color: #6aaa64;
+    color: white;
+}
+
+.key.present {
+    background-color: #c9b458;
+    color: white;
+}
+
+.key.absent {
+    background-color: #787c7e;
+    color: white;
+}
+
+#message {
+    margin-top: 10px;
+    font-size: 18px;
+    color: red;
+}
+
+#message-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 0;
+}
+
+#error-message {
+    position: absolute;
+    top: -30px; /* Position above the grid */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0);
+    color: white;
+    padding: 15px 10px;
+    border-radius: 5px;
+    display: none;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    padding-bottom: 40px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#stats div {
+    text-align: center;
+}
+
+#stats span {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#guess-distribution {
+    width: 100%;
+}
+
+.distribution-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.distribution-row span {
+    width: 20px;
+    text-align: center;
+}
+
+.bar {
+    height: 20px;
+    background-color: #cacaca;
+    margin-left: 10px;
+    border-radius: 5px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.button {
+    background-color: #6aaa64;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #5c9a54;
+}
+
+#share-button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#already-played {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 350px;
+}
+
+/* How to Play Popup Styling */
+.example-correct {
+    background-color: green;
+    color: white;
+    padding: 0 5px;
+}
+
+.example-present {
+    background-color: yellow;
+    color: black;
+    padding: 0 5px;
+}
+
+.example-incorrect {
+    background-color: gray;
+    color: white;
+    padding: 0 5px;
+}
+
+
+#how-to-play-popup-content {
+    text-align: left;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.feedback-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center; 
+}
+
+.feedback-link {
+    color: black;
+}
+
+.stat {
+    width: 80px;
+    text-align: center;
+}
+
+.setting-option {
+    margin-bottom: 20px;
+}
+
+.gender {
+    background-color: yellow; 
+    padding: 5px 2px; 
+    border-radius: 5px;
+}
+
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
