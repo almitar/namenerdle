@@ -187,17 +187,15 @@ function showPopup(success) {
     updateStats(success);
     displayStats();
 
-    if (success) {
-        $('#share-button').show();
-    } else {
-        $('#share-button').hide();
-    }
+    // Show the share button only if the game is completed
+    $('#share-button').show();
 
     popup.show();
 
     // Start countdown for the next game
     startCountdown();
 }
+
 
 // Show message if the game was already played today
 function showAlreadyPlayedMessage() {
@@ -283,7 +281,6 @@ function displayStats() {
         $(`#guess-${i + 1}`).css('width', `${percentage}%`).text(guessCount);
     }
 
-    $('#share-button').hide(); // Ensure the share button is hidden when showing stats normally
     $('#popup').show(); // Ensure the popup is displayed
 }
 
