@@ -214,7 +214,7 @@ function closePopup() {
 
 // Share score
 function shareScore() {
-    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n namenerdle.com`;
+    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n namenerdle.com \n\n`;
 
     results.forEach(attempt => {
         attempt.forEach(({ letter, state }) => {
