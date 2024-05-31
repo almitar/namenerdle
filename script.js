@@ -228,7 +228,7 @@ function shareScore() {
         message += '\n';
     });
 
-    // Append the URL to the message
+    // Add the URL after the results
     message += '\nnamenerdle.com';
 
     if (navigator.share) {
@@ -244,6 +244,7 @@ function shareScore() {
             .catch(error => console.log('Error copying to clipboard', error));
     }
 }
+
 
 
 // Start countdown for the next game
