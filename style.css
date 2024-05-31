@@ -125,6 +125,12 @@ h1 {
     height: 30px;
 }
 
+#left-header-buttons {
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+}
+
 #game-container {
     text-align: center;
 }
