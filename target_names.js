@@ -1,5 +1,5 @@
 const targetNames = {
-    "2024-05-31": { name: "LUCAS", gender: "male" },
+    "2024-05-31": { name: "CHLOE", gender: "female" },
     "2024-06-01": { name: "GRACE", gender: "female" },
     "2024-06-02": { name: "DAVID", gender: "male" },
     "2024-06-03": { name: "PAULA", gender: "female" },
@@ -9,7 +9,7 @@ const targetNames = {
     "2024-06-07": { name: "FLORA", gender: "female" },
     "2024-06-08": { name: "DAISY", gender: "female" },
     "2024-06-09": { name: "ELIZA", gender: "female" },
-    "2024-06-10": { name: "CHLOE", gender: "female" },
+    "2024-06-10": { name: "LUCAS", gender: "male" },
 };
 
 // Function to get the target name for today's date
