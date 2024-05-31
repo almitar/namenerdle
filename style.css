@@ -74,12 +74,6 @@ body.dark-mode .gender {
     background-color: #3c376a; 
 }
 
-html, body {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-  }
-  
-
 body {
     font-family: monospace, Helvetica Neue, Arial, sans-serif;
     display: flex;
@@ -218,19 +212,15 @@ h1 {
 
 /* Responsive styles for mobile and iPad */
 @media (max-width: 768px) {
-    body {
-        justify-content: space-around;
-    }
 
     #grid {
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 5px;
-        margin: 0
     }
 
     .cell {
         position: relative;
-        font-size: 20px; /* Use vw to scale with viewport width */
+        font-size: 20px; 
     }
 
     .cell::after {
@@ -240,7 +230,7 @@ h1 {
     }
 
     .key {
-        font-size: 20px; /* Use vw to scale with viewport width */
+        font-size: 20px; 
     }
 
     @media (max-width: 440px) {
@@ -258,6 +248,19 @@ h1 {
         #gender-message {
             width: 320px;
         }
+
+        #keyboard-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #keyboard {
+            position: fixed;
+            bottom: 20px;
+            width: 95%;
+        }
+    
     }
 
     @media (max-width: 350px) {
