@@ -212,9 +212,8 @@ function closePopup() {
     $('.popup').hide();
 }
 
-// Share score
 function shareScore() {
-    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n namenerdle.com \n\n`;
+    let message = `Name Nerdle ${gameID} ${currentAttempt + 1}/${maxAttempts}\n\n`;
 
     results.forEach(attempt => {
         attempt.forEach(({ letter, state }) => {
@@ -229,6 +228,9 @@ function shareScore() {
         message += '\n';
     });
 
+    // Append the URL to the message
+    message += '\nnamenerdle.com';
+
     if (navigator.share) {
         navigator.share({
             title: 'Name Wordle Game',
@@ -242,6 +244,7 @@ function shareScore() {
             .catch(error => console.log('Error copying to clipboard', error));
     }
 }
+
 
 // Start countdown for the next game
 function startCountdown() {
