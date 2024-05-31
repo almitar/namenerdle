@@ -216,12 +216,15 @@ h1 {
 @media (max-width: 768px) {
     body {
         justify-content: space-around;
-        height: -webkit-fill-available;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+
     }
 
     #grid {
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 5px;
+        margin: 0
     }
 
     .cell {
@@ -237,10 +240,6 @@ h1 {
 
     .key {
         font-size: 20px; /* Use vw to scale with viewport width */
-    }
-
-    #keyboard {
-        margin-bottom: 20px;
     }
 
     @media (max-width: 440px) {
