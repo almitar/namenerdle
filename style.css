@@ -216,7 +216,7 @@ h1 {
 @media (max-width: 768px) {
     body {
         justify-content: space-around;
-        height: 100vh;
+        height: -webkit-fill-available;
     }
 
     #grid {
@@ -225,9 +225,8 @@ h1 {
     }
 
     .cell {
-        width: 100%;
         position: relative;
-        font-size: 4vw; /* Use vw to scale with viewport width */
+        font-size: 20px; /* Use vw to scale with viewport width */
     }
 
     .cell::after {
@@ -237,19 +236,26 @@ h1 {
     }
 
     .key {
-        font-size: 14px; /* Use vw to scale with viewport width */
+        font-size: 20px; /* Use vw to scale with viewport width */
+    }
+
+    #keyboard {
+        margin-bottom: 20px;
     }
 
     @media (max-width: 440px) {
         h1 {
             font-size: 18px;
         }
+        .header-button img {
+            width: 20px;
+        }
+        
         .key {
             font-size: 14px;
             padding: 10px;
         }
         #gender-message {
-            font-size: 14px;
             width: 320px;
         }
     }
@@ -261,6 +267,14 @@ h1 {
 
         .key {
             padding: 7.5px;
+        }
+
+        #keyboard {
+            margin-bottom: 0px;
+        }
+
+        #gender-message {
+            font-size: 14px;
         }
     }
 }
