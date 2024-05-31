@@ -216,9 +216,6 @@ h1 {
 @media (max-width: 768px) {
     body {
         justify-content: space-around;
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
-
     }
 
     #grid {
@@ -483,6 +480,7 @@ li {
 #gender-message-container {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 
