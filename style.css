@@ -131,16 +131,11 @@ h1 {
     display: flex;
 }
 
-#game-container {
-    text-align: center;
-}
-
 #grid {
     display: grid;
     grid-template-columns: repeat(5, 53px); /* Default to 5 columns, will be dynamically updated */
     grid-gap: 5px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin: 15px 0;
     justify-content: center;
 }
 
@@ -185,7 +180,6 @@ h1 {
 }
 
 .key {
-    padding: 0px;
     background-color: #d3d6da;
     border: none;
     cursor: pointer;
@@ -216,6 +210,59 @@ h1 {
 .key.absent {
     background-color: #787c7e;
     color: white;
+}
+
+/* Responsive styles for mobile and iPad */
+@media (max-width: 768px) {
+    body {
+        justify-content: space-around;
+        height: 100vh;
+    }
+
+    #grid {
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 5px;
+    }
+
+    .cell {
+        width: 100%;
+        position: relative;
+        font-size: 4vw; /* Use vw to scale with viewport width */
+    }
+
+    .cell::after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    .key {
+        font-size: 14px; /* Use vw to scale with viewport width */
+    }
+
+    @media (max-width: 440px) {
+        h1 {
+            font-size: 18px;
+        }
+        .key {
+            font-size: 14px;
+            padding: 10px;
+        }
+        #gender-message {
+            font-size: 14px;
+            width: 320px;
+        }
+    }
+
+    @media (max-width: 350px) {
+        .cell {
+            height: 35px;
+        }
+
+        .key {
+            padding: 7.5px;
+        }
+    }
 }
 
 #message {
@@ -417,6 +464,12 @@ li {
 
 #gender-message {
     max-width: 500px;
+    text-align: center;
+}
+
+#gender-message-container {
+    display: flex;
+    justify-content: center;
 }
 
 
