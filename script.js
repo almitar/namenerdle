@@ -169,14 +169,28 @@ function updateStats(success) {
 function hasPlayedToday() {
     const lastPlayed = localStorage.getItem('lastPlayed');
     const today = new Date().toISOString().slice(0, 10);
-    return lastPlayed === today;
+    if (lastPlayed === today) {
+        return true;
+    }
+    return false;
 }
 
-// Set the last played date to today
+// Set the last played date to today and clear game state if it's a new day
 function setPlayedToday() {
     const today = new Date().toISOString().slice(0, 10);
     localStorage.setItem('lastPlayed', today);
+    resetGameState();
 }
+
+// Reset the game state for a new day
+function resetGameState() {
+    currentAttempt = 0;
+    currentGuess = '';
+    results = [];
+    localStorage.removeItem('nameWordleGameState');
+    createGrid();  // Recreate the grid for the new game
+}
+
 
 // Show popup with stats
 function showPopup(success) {
