@@ -2,7 +2,7 @@ const maxAttempts = 6;
 let currentAttempt = 0;
 let currentGuess = '';
 let nameList = [];
-let targetInfo = getTargetNameForToday(); 
+let targetInfo = getTargetNameForToday();
 let results = []; // Track results for each guess
 let gameID = getGameID(new Date().toISOString().split('T')[0]);
 
@@ -55,6 +55,7 @@ $(document).on('click', '#share-button', function(){
 
 $(document).on('click', '.close-button', function(){
     closePopup();
+    loadGameState(); // Reload the game state to show the grid after closing the popup
 });
 
 $(document).on('click', '#stats-button', function(){
@@ -91,7 +92,8 @@ function saveGameState() {
         currentGuess,
         results,
         stats,
-        gameID
+        gameID,
+        lastPlayed: new Date().toISOString().split('T')[0] // Save the last played date
     };
     console.log("Saving game state:", gameState);
     localStorage.setItem('nameWordleGameState', JSON.stringify(gameState));
@@ -101,6 +103,14 @@ function loadGameState() {
     const savedGameState = localStorage.getItem('nameWordleGameState');
     if (savedGameState) {
         const gameState = JSON.parse(savedGameState);
+        const today = new Date().toISOString().split('T')[0];
+
+        // If the saved game state is from a previous day, reset the game state
+        if (gameState.lastPlayed !== today) {
+            resetGameState();
+            return;
+        }
+
         console.log("Loading game state:", gameState);
         currentAttempt = gameState.currentAttempt;
         currentGuess = gameState.currentGuess;
@@ -133,7 +143,6 @@ function recreateGrid() {
         }
     }
 }
-
 
 // Load stats from localStorage
 function loadStats() {
@@ -169,18 +178,14 @@ function hasPlayedToday() {
     const lastPlayed = localStorage.getItem('lastPlayed');
     const today = new Date().toISOString().slice(0, 10);
     console.log(`Last Played: ${lastPlayed}, Today: ${today}`); // Add this line
-    if (lastPlayed === today) {
-        return true;
-    }
-    return false;
+    return lastPlayed === today;
 }
-
 
 // Set the last played date to today and clear game state if it's a new day
 function setPlayedToday() {
     const today = new Date().toISOString().slice(0, 10);
     localStorage.setItem('lastPlayed', today);
-    resetGameState();
+    saveGameState(); // Save the game state at the end of the game
 }
 
 // Reset the game state for a new day
@@ -188,16 +193,22 @@ function resetGameState() {
     currentAttempt = 0;
     currentGuess = '';
     results = [];
+    stats = {
+        gamesPlayed: stats.gamesPlayed,
+        wins: stats.wins,
+        currentStreak: stats.currentStreak,
+        maxStreak: stats.maxStreak,
+        guessDistribution: stats.guessDistribution
+    };
     localStorage.removeItem('nameWordleGameState');
     createGrid();  // Recreate the grid for the new game
 }
-
 
 // Show popup with stats
 function showPopup(success) {
     const popup = $('#popup');
     const message = $('#popup-message');
-    message.text(success ? "Congratulations! You solved today's puzzle! If you're enjoying namenerdle please share it 🧡" : "Thanks for playing today!  If you're enjoying namenerdle please share it 🧡");
+    message.text(success ? "Congratulations! You solved today's puzzle! If you're enjoying namenerdle please share it 🧡" : "Thanks for playing today! If you're enjoying namenerdle please share it 🧡");
     updateStats(success);
     displayStats();
 
@@ -208,8 +219,8 @@ function showPopup(success) {
 
     // Start countdown for the next game
     startCountdown();
+    saveGameState(); // Ensure the game state is saved when the popup is shown
 }
-
 
 // Show message if the game was already played today
 function showAlreadyPlayedMessage() {
@@ -225,6 +236,7 @@ function showAlreadyPlayedMessage() {
 // Close popup
 function closePopup() {
     $('.popup').hide();
+    loadGameState(); // Reload the game state to show the grid after closing the popup
 }
 
 function shareScore() {
@@ -259,8 +271,6 @@ function shareScore() {
             .catch(error => console.log('Error copying to clipboard', error));
     }
 }
-
-
 
 // Start countdown for the next game
 function startCountdown() {
@@ -472,7 +482,6 @@ function submitGuess() {
 
     saveGameState();
 }
-
 
 function updateKeyboardKey(key, className) {
     $('.key').each(function() {
