@@ -54,6 +54,7 @@ $(document).on('click', '#share-button', function(){
 });
 
 $(document).on('click', '#share-button2', function(){
+    console.log('Share button 2 clicked');
     shareScore();
 });
 
