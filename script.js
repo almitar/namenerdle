@@ -212,10 +212,16 @@ function resetGameState() {
 function showPopup(success) {
     const popup = $('#popup');
     const message = $('#popup-message');
-    message.text(success ? "Congratulations! You solved today's puzzle! If you're enjoying namenerdle please share it 🧡" : "Thanks for playing today! If you're enjoying namenerdle please share it 🧡");
+    if (success) {
+        message.text("Congratulations! You solved today's puzzle! If you're enjoying namenerdle please share it 🧡");
+    } else {
+        message.html(`Thanks for playing today! The correct answer was <strong>${targetInfo.name}</strong>. If you're enjoying namenerdle please share it 🧡`);
+    }
     updateStats(success);
     displayStats();
 
+    // Show the share button only if the game is completed
+    $('#share-button').show();
 
     popup.show();
 
