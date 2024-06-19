@@ -53,7 +53,7 @@ $(document).on('click', '#share-button', function(){
     shareScore();
 });
 
-$(document).on('click', '#share-button2', function(){
+$(document).on('click', '#share-popup', function(){
     console.log('Share button 2 clicked');
     shareScore();
 });
