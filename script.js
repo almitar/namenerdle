@@ -196,7 +196,7 @@ function resetGameState() {
 function showPopup(success) {
     const popup = $('#popup');
     const message = $('#popup-message');
-    message.text(success ? "Congratulations! You solved today's puzzle!" : "Thanks for playing today!");
+    message.text(success ? "Congratulations! You solved today's puzzle! If you're enjoying namenerdle please share it 🧡" : "Thanks for playing today!  If you're enjoying namenerdle please share it 🧡");
     updateStats(success);
     displayStats();
 
