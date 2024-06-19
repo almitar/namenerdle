@@ -53,6 +53,10 @@ $(document).on('click', '#share-button', function(){
     shareScore();
 });
 
+$(document).on('click', '#share-button2', function(){
+    shareScore();
+});
+
 $(document).on('click', '.close-button', function(){
     closePopup();
     loadGameState(); // Reload the game state to show the grid after closing the popup
@@ -213,7 +217,7 @@ function showPopup(success) {
     displayStats();
 
     // Show the share button only if the game is completed
-    $('#share-button').show();
+    $('#share-button2').show();
 
     popup.show();
 
