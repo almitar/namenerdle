@@ -165,15 +165,16 @@ function updateStats(success) {
     displayStats();
 }
 
-// Check if the user has already played today
 function hasPlayedToday() {
     const lastPlayed = localStorage.getItem('lastPlayed');
     const today = new Date().toISOString().slice(0, 10);
+    console.log(`Last Played: ${lastPlayed}, Today: ${today}`); // Add this line
     if (lastPlayed === today) {
         return true;
     }
     return false;
 }
+
 
 // Set the last played date to today and clear game state if it's a new day
 function setPlayedToday() {
