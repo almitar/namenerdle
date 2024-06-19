@@ -216,8 +216,6 @@ function showPopup(success) {
     updateStats(success);
     displayStats();
 
-    // Show the share button only if the game is completed
-    $('#share-button2').show();
 
     popup.show();
 
