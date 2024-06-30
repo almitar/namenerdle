@@ -287,7 +287,9 @@ function startCountdown() {
 
     const interval = setInterval(() => {
         const now = new Date();
-        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        const tomorrow = new Date();
+        tomorrow.setHours(24, 0, 0, 0); // Set to midnight tomorrow local time
+        
         const timeDifference = tomorrow - now;
 
         const hours = String(Math.floor(timeDifference / (1000 * 60 * 60) % 24)).padStart(2, '0');
