@@ -21,33 +21,6 @@ if (darkModeEnabled) {
     $('#dark-theme-toggle').prop('checked', true);
 }
 
-$(document).ready(() => {
-    console.log('Document ready'); // Debug statement
-    loadStats();
-
-    if (hasPlayedToday()) {
-        loadGameState(); // Load the game state and display the grid
-        showAlreadyPlayedMessage();
-        return;
-    }
-
-    if (!targetInfo) {
-        showMessage("No target name found for today. Please try again later.");
-        return;
-    }
-
-    loadGameState(); // Load the game state when the page is loaded
-
-    createGrid(); // Call createGrid after targetInfo is set
-    loadKeyboard(); // Load keyboard from external file
-    loadNames(targetInfo.name.length);
-
-    // Update the message above the grid
-    const genderText = targetInfo.gender === "female" ? "female" : "male";
-    $('#gender-message').html(`Find the hidden common name, today's is traditionally <span class="gender">${genderText}</span>`);
-
-    $(document).on('keydown', handleKeyDown);
-});
 
 $(document).on('click', '#share-button', function(){
     shareScore();
@@ -91,26 +64,39 @@ $(document).on('change', '#dark-theme-toggle', function() {
     }
 });
 
-function saveGameState() {
-    const gameState = {
-        currentAttempt,
-        currentGuess,
-        results,
-        stats,
-        gameID,
-        lastPlayed: new Date().toISOString().split('T')[0] // Save the last played date
-    };
-    console.log("Saving game state:", gameState);
-    localStorage.setItem('nameWordleGameState', JSON.stringify(gameState));
-}
+// Document ready function
+$(document).ready(() => {
+    console.log('Document ready');
+    loadStats();
+    loadGameState(); // This is good, but we need to move it before other initializations
 
+    if (!targetInfo) {
+        showMessage("No target name found for today. Please try again later.");
+        return;
+    }
+
+    createGrid();
+    loadKeyboard();
+    loadNames(targetInfo.name.length);
+
+    // Update the message above the grid
+    const genderText = targetInfo.gender === "female" ? "female" : "male";
+    $('#gender-message').html(`Find the hidden common name, today's is traditionally <span class="gender">${genderText}</span>`);
+
+    if (hasPlayedToday()) {
+        showAlreadyPlayedMessage();
+    } else {
+        $(document).on('keydown', handleKeyDown);
+    }
+});
+
+// Load game state
 function loadGameState() {
     const savedGameState = localStorage.getItem('nameWordleGameState');
     if (savedGameState) {
         const gameState = JSON.parse(savedGameState);
         const today = new Date().toISOString().split('T')[0];
 
-        // If the saved game state is from a previous day, reset the game state
         if (gameState.lastPlayed !== today) {
             resetGameState();
             return;
@@ -122,10 +108,12 @@ function loadGameState() {
         results = gameState.results;
         stats = gameState.stats;
         gameID = gameState.gameID;
-        recreateGrid();
+        
+        recreateGrid(); // Call recreateGrid after loading the state
     }
 }
 
+// Recreate grid based on loaded state
 function recreateGrid() {
     createGrid(); // Ensure the grid is created
 
@@ -137,16 +125,41 @@ function recreateGrid() {
             const { letter, state } = attempt[j];
             console.log(`Cell [${i},${j}]:`, { letter, state });
             cell.text(letter);
-
-            if (state === 'correct') {
-                cell.addClass('correct');
-            } else if (state === 'present') {
-                cell.addClass('present');
-            } else {
-                cell.addClass('absent');
-            }
+            cell.addClass(state); // Add the state class directly
         }
     }
+
+    // Update the current guess row
+    for (let j = 0; j < targetInfo.name.length; j++) {
+        const cell = $(`#cell-${currentAttempt}-${j}`);
+        cell.text(currentGuess[j] || '');
+    }
+
+    // Update keyboard state
+    updateKeyboardState();
+}
+
+// New function to update keyboard state
+function updateKeyboardState() {
+    results.forEach(attempt => {
+        attempt.forEach(({ letter, state }) => {
+            updateKeyboardKey(letter, state);
+        });
+    });
+}
+
+// Save game state
+function saveGameState() {
+    const gameState = {
+        currentAttempt,
+        currentGuess,
+        results,
+        stats,
+        gameID,
+        lastPlayed: new Date().toISOString().split('T')[0]
+    };
+    console.log("Saving game state:", gameState);
+    localStorage.setItem('nameWordleGameState', JSON.stringify(gameState));
 }
 
 // Load stats from localStorage
